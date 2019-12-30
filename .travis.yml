@@ -17,7 +17,7 @@ env:
 before_install:
   - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
   - if [ ! -d "$HOME/arduino_ide/libraries/TimeLib" ]; then git clone https://github.com/PaulStoffregen/Time $HOME/arduino_ide/libraries/TimeLib; fi
-  - if [ ! -d "$HOME/arduino_ide/libraries/WiFiManager" ]; then git clone https://github.com/tzapu/WiFiManager $HOME/arduino_ide/libraries/WiFiManager; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/WiFiManager" ]; then git clone https://github.com/tzapu/WiFiManager.git $HOME/arduino_ide/libraries/WiFiManager; fi
   - if [ ! -d "$HOME/arduino_ide/libraries/TelnetStream" ]; then git clone https://github.com/jandrassy/TelnetStream $HOME/arduino_ide/libraries/TelnetStream; fi
   - if [ ! -d "$HOME/arduino_ide/libraries/WebSocketsServer" ]; then git clone https://github.com/Links2004/arduinoWebSockets/ $HOME/arduino_ide/libraries/WebSocketsServer; fi
   - if [ ! -d "$HOME/arduino_ide/libraries/SSD1306Ascii" ]; then git clone https://github.com/greiman/SSD1306Ascii $HOME/arduino_ide/libraries/SSD1306Ascii; fi
@@ -27,6 +27,8 @@ install:
   # Note that every library should be installed in a seperate command
   - arduino --install-library "Adafruit SleepyDog Library"
   - arduino --install-library "Adafruit FONA Library"
+  - arduino --install-boards esp8266:esp8266
+  - arduino --board esp8266:esp8266:generic --save-prefs
 script:
   - build_main_platforms
 notifications:
