@@ -1,3 +1,5 @@
+# using https://github.com/adafruit/ci-arduino
+
 language: c
 sudo: false
 cache:
@@ -11,8 +13,16 @@ env:
   global:
      # You can uncomment this to explicitly choose an (old) version of the Arduino IDE
      #- ARDUINO_IDE_VERSION="1.8.10"
+     INSTALL_PLATFORMS=esp8266
 before_install:
   - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
+  - if [ ! -d "$HOME/arduino_ide/libraries/TimeLib" ]; then git clone https://github.com/PaulStoffregen/Time $HOME/arduino_ide/libraries/TimeLib; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/WiFiManager" ]; then git clone https://github.com/tzapu/WiFiManager $HOME/arduino_ide/libraries/WiFiManager; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/TelnetStream" ]; then git clone https://github.com/jandrassy/TelnetStream $HOME/arduino_ide/libraries/TelnetStream; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/WebSocketsServer" ]; then git clone https://github.com/Links2004/arduinoWebSockets/ $HOME/arduino_ide/libraries/WebSocketsServer; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/SSD1306Ascii" ]; then git clone https://github.com/greiman/SSD1306Ascii $HOME/arduino_ide/libraries/SSD1306Ascii; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/PubSubClient" ]; then git clone https://github.com/knolleary/pubsubclient $HOME/arduino_ide/libraries/PubSubClient; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/ArduinoJson" ]; then git clone https://github.com/bblanchon/ArduinoJson/releases $HOME/arduino_ide/libraries/ArduinoJson; fi
 install:
   # Note that every library should be installed in a seperate command
   - arduino --install-library "Adafruit SleepyDog Library"
