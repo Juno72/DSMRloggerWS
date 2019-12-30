@@ -22,7 +22,7 @@ before_install:
   - if [ ! -d "$HOME/arduino_ide/libraries/WebSocketsServer" ]; then git clone https://github.com/Links2004/arduinoWebSockets/ $HOME/arduino_ide/libraries/WebSocketsServer; fi
   - if [ ! -d "$HOME/arduino_ide/libraries/SSD1306Ascii" ]; then git clone https://github.com/greiman/SSD1306Ascii $HOME/arduino_ide/libraries/SSD1306Ascii; fi
   - if [ ! -d "$HOME/arduino_ide/libraries/PubSubClient" ]; then git clone https://github.com/knolleary/pubsubclient $HOME/arduino_ide/libraries/PubSubClient; fi
-  - if [ ! -d "$HOME/arduino_ide/libraries/ArduinoJson" ]; then git clone https://github.com/bblanchon/ArduinoJson/releases $HOME/arduino_ide/libraries/ArduinoJson; fi
+  - if [ ! -d "$HOME/arduino_ide/libraries/ArduinoJson" ]; then git clone https://github.com/bblanchon/ArduinoJson.git $HOME/arduino_ide/libraries/ArduinoJson; fi
 install:
   # Note that every library should be installed in a seperate command
   - arduino --install-library "Adafruit SleepyDog Library"
